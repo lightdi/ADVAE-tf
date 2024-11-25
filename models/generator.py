@@ -4,7 +4,7 @@ from tensorflow.python.keras import layers, Model
 from decoder import Decoder
 
 class Generator(tf.keras.Model):
-    def __init__(self, latent_dim, output_shape):
+    def __init__(self, output_shape):
         super(Generator, self).__init__()
         self.decoder = Decoder(output_shape)
 
