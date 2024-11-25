@@ -2,11 +2,11 @@ import tensorflow as tf
 import numpy as np
 from tensorflow.python.keras import optimizers
 from tensorflow.python.keras import losses
-from .models.decoder import Decoder
-from .models.encoder import Encoder
-from .models.generator import Generator
-from .models.discriminator import Discriminator
-from tensorboardX import SummaryWriter
+from models.decoder import Decoder
+from models.encoder import Encoder
+from models.generator import Generator
+from models.discriminator import Discriminator
+#from tensorboardX import SummaryWriter
 
 class Trainer:
 
@@ -24,6 +24,10 @@ class Trainer:
         # TensorBoard setup
         self.log_dir = "logs/train"
         self.summary_writer = tf.summary.create_file_writer(self.log_dir)
+
+        #GPU
+        self.device_name = "/GPU:0" if tf.config.list_physical_devices('GPU') else "/CPU:0"
+        print(f"Usando dispositivo: {self.device_name}")
 
 
         # Otimizadores

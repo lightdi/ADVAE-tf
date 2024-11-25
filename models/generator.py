@@ -1,7 +1,7 @@
 import tensorflow as tf
 from tensorflow import keras
 from tensorflow.python.keras import layers, Model
-from decoder import Decoder
+from models.decoder import Decoder
 
 class Generator(tf.keras.Model):
     def __init__(self, output_shape):

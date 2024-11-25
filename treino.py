@@ -1,8 +1,14 @@
+import os 
 import tensorflow as tf
-from .utils.dataloader import DataLoader
+from utils.dataloader import DataLoader
 from keras._tf_keras.keras.preprocessing import image
 from trainer import Trainer
 
+os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
+
+#GPU
+device_name = "/GPU:0" if tf.config.list_physical_devices('GPU') else "/CPU:0"
+print(f"Usando dispositivo: {device_name}")
 
 #Inicializando o treino do Modelo
 latent_dim = 100
@@ -29,4 +35,6 @@ trainer = Trainer(latent_dim=latent_dim,
                     id_dim=id_dim, 
                     batch_size=batch_size,
                     dataset=dataset, lr=lr, b1=b1, b2=b2)
+
+trainer.train(100)
 
